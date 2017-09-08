@@ -5,7 +5,7 @@ var express = require('express'),
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  res.redirect('/login')
 });
 
 router.route('/signup')
@@ -23,6 +23,14 @@ router.route('/signup')
     })
     .catch(next)
     
+})
+
+router.route('/logout')
+.get(function(req, res, next){
+	
+	req.logout();
+	res.redirect('/');
+
 })
 
 
