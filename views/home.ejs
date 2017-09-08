@@ -1,0 +1,100 @@
+<html ng-app="home">
+
+<head>
+	<title>Home</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="/jquery/dist/jquery.min.js"></script>
+	<link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="/toastr/toastr.min.css" />	
+	<script src="/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="/angular/angular.min.js"></script>
+	<script src="/toastr/toastr.min.js"></script>
+	<script src="/angular-dragdrop/src/angular-dragdrop.min.js"></script>
+	<script src="/jquery-ui/jquery-ui.min.js"></script>
+	<style>
+		.card{
+			border : 1px solid black;
+			margin : 5px;
+			padding: 5px;
+			width : 50px;
+		}
+		label{
+			font-size: xx-large;
+		}
+	</style>
+</head>
+
+<body ng-controller="homeController">
+
+	<div class="container">
+
+		<h1>Home</h1>
+		
+		<div class="row">
+			
+			<div ng-repeat="card in game.cards" class="card col-sm-2" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="card" 
+				 jqyoui-draggable="{animate:true, onStart:'startCallback(card, $index)'}" >
+				<label ng-if="card.house=='heart'">❤️</label>
+				<label ng-if="card.house=='spade'">♠️</label>
+				<label ng-if="card.house=='club'">♣️</label>
+				<label ng-if="card.house=='diamond'">♦️</label>
+				<br>
+				<label ng-bind="card.number"></label>
+			</div>
+			
+		</div>
+		
+		<hr>
+		<div class="row">
+<!-- 			 ng-repeat="(key, value) in game.houses" -->
+			<div class="col-sm-3 thumbnail">
+				
+				<label>♠️</label>
+				<div data-drop="true" ng-model="game.houses.spade" data-jqyoui-options  jqyoui-droppable="{beforeDrop:'beforeDrop(\'spade\')'}" style='height:50px;'>
+					<span ng-repeat="item in game.houses.spade" ng-bind="'Number : '+item.number"></span>
+				</div>
+
+			</div>
+			
+			<div class="col-sm-3 thumbnail">
+				
+				<label>❤️</label>
+				<div data-drop="true" ng-model="game.houses.heart" data-jqyoui-options jqyoui-droppable="{beforeDrop:'beforeDrop(\'heart\')'}" style='height:50px;'>
+					<span ng-repeat="item in game.houses.heart" ng-bind="'Number : '+item.number"></span>
+				</div>
+
+			</div>
+			<div class="col-sm-3 thumbnail">
+
+				<label>♦️</label>
+				<div data-drop="true" ng-model="game.houses.diamond" data-jqyoui-options  jqyoui-droppable="{beforeDrop:'beforeDrop(\'diamond\')'}" style='height:50px;'>
+					<span ng-repeat="item in game.houses.diamond" ng-bind="'Number : '+item.number"></span>
+				</div>
+				
+			</div>
+			<div class="col-sm-3 thumbnail">
+				
+				<label>♣️</label>
+
+				<div data-drop="true" ng-model="game.houses.club" data-jqyoui-options  jqyoui-droppable="{beforeDrop:'beforeDrop(\'club\')'}" style='height:50px;'>
+					<span ng-repeat="item in game.houses.club" ng-bind="'Number : '+item.number"></span>
+				</div>
+				
+			</div>
+			
+		</div>
+		<div class="row">
+			
+			<button class="btn btn-sm" ng-if="restart" ng-click="init()">
+				Restart
+			</button>
+			
+			
+		</div>
+	</div>
+	
+	<script src="/controllers/home.js"></script>
+
+</body>
+
+</html>
