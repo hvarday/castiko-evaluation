@@ -72,10 +72,13 @@ angular.module('home', ['ngDragDrop'])
 		
           if ($scope.selected.house == value) {
                   deferred.resolve();
+			  var temp = $scope.game.houses[value].findIndex(function(e){
+				  return (e.number===$scope.selected.number)
+			  });
+			  
+			  if (temp==-1)  $scope.game.houses[value].push(Object.assign({}, $scope.selected))
 			  $scope.remove($scope.selected)
-			  setTimeout(function(){
-			  	$scope.save()
-			  }, 100)
+			  $scope.save()
 
 			  if($scope.game.cards.length==0)
 				  $scope.completeGame();
