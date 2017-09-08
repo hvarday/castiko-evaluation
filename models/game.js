@@ -27,7 +27,7 @@ var gameModel = mongoose.Schema({
 gameModel.pre('save', function(next){
 	var data = this;
 	
-	if(data.cards === undefined || !data.cards.length)
+	if(data.cards === undefined || (!data.cards.length && !data.houses.spade.length))
 		Object.assign(data, { cards : createGame() });
 	
 	console.log(data)

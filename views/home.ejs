@@ -18,6 +18,11 @@
 			padding: 5px;
 			width : 50px;
 		}
+		.smallcard{
+			font-size: x-large;
+			border: 1px solid black;
+			padding: 5px;
+		}
 		label{
 			font-size: xx-large;
 		}
@@ -29,7 +34,51 @@
 	<div class="container">
 
 		<h1>Home</h1>
-		
+		<div class="row">
+			
+			<button class="btn btn-sm btn-info" ng-if="restart" ng-click="init()">
+				Restart
+			</button>			
+		</div>
+
+		<div class="row">
+			<div class="col-sm-2 col-sm-offset-1 thumbnail">
+				
+				<label>♠️</label>
+				<div data-drop="true" ng-model="game.houses.spade" data-jqyoui-options  jqyoui-droppable="{beforeDrop:'beforeDrop(\'spade\')'}" style='height:100px;'>
+					<span ng-repeat="item in game.houses.spade" class="smallcard col-sm-2" ng-bind="item.number"></span>
+				</div>
+
+			</div>
+			
+			<div class="col-sm-2 col-sm-offset-1 thumbnail">
+				
+				<label>❤️</label>
+				<div data-drop="true" ng-model="game.houses.heart" data-jqyoui-options jqyoui-droppable="{beforeDrop:'beforeDrop(\'heart\')'}"  style='height:100px;'>
+					<span ng-repeat="item in game.houses.heart" class="smallcard col-sm-2" ng-bind="item.number"></span>
+				</div>
+
+			</div>
+			<div class="col-sm-2 col-sm-offset-1 thumbnail">
+
+				<label>♦️</label>
+				<div data-drop="true" ng-model="game.houses.diamond" data-jqyoui-options  jqyoui-droppable="{beforeDrop:'beforeDrop(\'diamond\')'}" style='height:100px;'>
+					<span ng-repeat="item in game.houses.diamond" class="smallcard col-sm-2" ng-bind="item.number"></span>
+				</div>
+				
+			</div>
+			<div class="col-sm-2 col-sm-offset-1 thumbnail">
+				
+				<label>♣️</label>
+
+				<div data-drop="true" ng-model="game.houses.club" data-jqyoui-options  jqyoui-droppable="{beforeDrop:'beforeDrop(\'club\')'}" style='height:100px;'>
+					<span ng-repeat="item in game.houses.club" class="smallcard col-sm-2" ng-bind="item.number"></span>
+				</div>
+				
+			</div>
+			
+		</div>
+<hr>		
 		<div class="row">
 			
 			<div ng-repeat="card in game.cards" class="card col-sm-2" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="card" 
@@ -44,53 +93,6 @@
 			
 		</div>
 		
-		<hr>
-		<div class="row">
-<!-- 			 ng-repeat="(key, value) in game.houses" -->
-			<div class="col-sm-3 thumbnail">
-				
-				<label>♠️</label>
-				<div data-drop="true" ng-model="game.houses.spade" data-jqyoui-options  jqyoui-droppable="{beforeDrop:'beforeDrop(\'spade\')'}" style='height:50px;'>
-					<span ng-repeat="item in game.houses.spade" ng-bind="'Number : '+item.number"></span>
-				</div>
-
-			</div>
-			
-			<div class="col-sm-3 thumbnail">
-				
-				<label>❤️</label>
-				<div data-drop="true" ng-model="game.houses.heart" data-jqyoui-options jqyoui-droppable="{beforeDrop:'beforeDrop(\'heart\')'}" style='height:50px;'>
-					<span ng-repeat="item in game.houses.heart" ng-bind="'Number : '+item.number"></span>
-				</div>
-
-			</div>
-			<div class="col-sm-3 thumbnail">
-
-				<label>♦️</label>
-				<div data-drop="true" ng-model="game.houses.diamond" data-jqyoui-options  jqyoui-droppable="{beforeDrop:'beforeDrop(\'diamond\')'}" style='height:50px;'>
-					<span ng-repeat="item in game.houses.diamond" ng-bind="'Number : '+item.number"></span>
-				</div>
-				
-			</div>
-			<div class="col-sm-3 thumbnail">
-				
-				<label>♣️</label>
-
-				<div data-drop="true" ng-model="game.houses.club" data-jqyoui-options  jqyoui-droppable="{beforeDrop:'beforeDrop(\'club\')'}" style='height:50px;'>
-					<span ng-repeat="item in game.houses.club" ng-bind="'Number : '+item.number"></span>
-				</div>
-				
-			</div>
-			
-		</div>
-		<div class="row">
-			
-			<button class="btn btn-sm" ng-if="restart" ng-click="init()">
-				Restart
-			</button>
-			
-			
-		</div>
 	</div>
 	
 	<script src="/controllers/home.js"></script>

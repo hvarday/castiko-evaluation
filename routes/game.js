@@ -27,7 +27,7 @@ router.route('/')
 })
 .put(function(req, res, next){
 	
-	gameModel.update(req.body._id, req.body)
+	gameModel.update({ _id : req.body._id}, req.body)
 	.then(function(doc){
 		res.json();
 	})
